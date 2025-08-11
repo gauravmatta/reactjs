@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div>
         <footer>
-            <p style={{ textAlign: 'center', margin: 0 }}>
+            <p className='footer'>
             &copy; {new Date().getFullYear()} TrainingApp. All rights reserved.
           </p>
         </footer>
