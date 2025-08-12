@@ -1,6 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Register = () => {
+ 
+ 
+ 
+ 
+  const [formData,setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    password2: ''
+  })
+
+  var {name, email, password, password2} = formData;
+  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+
   return (
     <>
     <section className="container">
