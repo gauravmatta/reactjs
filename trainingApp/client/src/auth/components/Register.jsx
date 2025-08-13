@@ -14,6 +14,7 @@ const Register = () => {
 
   var {name, email, password, password2} = formData;
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+  //e.target.name is used to get the name of the input field that is being changed
 
   return (
     <>
