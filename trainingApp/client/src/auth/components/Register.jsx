@@ -11,13 +11,21 @@ const Register = () => {
 
   var {name, email, password, password2} = formData;
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+  const onSubmit = e => {
+    e.preventDefault();
+    if (password !== password2) {
+      console.log('Passwords do not match');
+    } else {
+      console.log('Form submitted successfully', formData);
+    }
+  }
 
   return (
     <>
     <section className="container">
       <h1 className="large text-primary">Sign Up</h1>
       <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
-      <form className="form" action="create-profile.html">
+      <form className="form" onSubmit={onSubmit}>
         <div className="form-group">
           <input type="text" placeholder="Name" name="name" value={name}
            onChange={onChange} 
@@ -52,7 +60,7 @@ const Register = () => {
             required
           />
         </div>
-        <input type="submit" className="btn btn-primary" value="Register" />
+        <input type="submit" className="btn btn-primary" value="Register"/>
       </form>
       <p className="my-1">
         Already have an account? <a href="login.html">Sign In</a>
