@@ -5,33 +5,42 @@ const Register = () => {
   //useState returns an array with two elements: the current state and a function to update it
   //we can use array destructuring to assign the two elements to variables
   const [formData,setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    password2: ''
+    name: 'Gaurav',
+    email: 'gaurav@example.com',
+    password: 'password123',
+    password2: 'password123'
   })
 
   //formData is the state variable that holds the form data
   //setFormData is the function that updates the formData state variable
   const {name, email, password, password2} = formData;
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
-  //e.target.name is used to get the name of the input field that is being changed
+  const onSubmit = e => {
+    e.preventDefault();
+    if (password !== password2) {
+      console.log('Passwords do not match');
+    } else {
+      console.log('Form submitted successfully', formData);
+    }
+  }
 
   return (
     <>
     <section className="container">
       <h1 className="large text-primary">Sign Up</h1>
       <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
-      <form className="form" action="create-profile.html">
+      <form className="form" onSubmit={onSubmit}>
         <div className="form-group">
-          <input type="text" placeholder="Name" name="name" required />
+          <input type="text" placeholder="Name" name="name" value={name}
+           onChange={onChange} 
+           required />
         </div>
         <div className="form-group">
-          <input type="email" placeholder="Email Address" name="email" />
+          <input type="email" placeholder="Email Address" name="email" value={email} onChange={onChange} required />
           <small className="form-text"
             >This site uses Gravatar so if you want a profile image, use a
-            Gravatar email</small
-          >
+            Gravatar email
+          </small>
         </div>
         <div className="form-group">
           <input
@@ -39,6 +48,9 @@ const Register = () => {
             placeholder="Password"
             name="password"
             minLength="6"
+            value={password}
+            onChange={onChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -47,9 +59,12 @@ const Register = () => {
             placeholder="Confirm Password"
             name="password2"
             minLength="6"
+            value={password2}
+            onChange={onChange}
+            required
           />
         </div>
-        <input type="submit" className="btn btn-primary" value="Register" />
+        <input type="submit" className="btn btn-primary" value="Register"/>
       </form>
       <p className="my-1">
         Already have an account? <a href="login.html">Sign In</a>
