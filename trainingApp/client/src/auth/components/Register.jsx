@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 
 const Register = () => {
- 
- 
- 
- 
+  //useState is a hook that allows you to add state to a functional component
+  //useState returns an array with two elements: the current state and a function to update it
+  //we can use array destructuring to assign the two elements to variables
   const [formData,setFormData] = useState({
     name: '',
     email: '',
@@ -12,7 +11,9 @@ const Register = () => {
     password2: ''
   })
 
-  var {name, email, password, password2} = formData;
+  //formData is the state variable that holds the form data
+  //setFormData is the function that updates the formData state variable
+  const {name, email, password, password2} = formData;
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
   //e.target.name is used to get the name of the input field that is being changed
 
