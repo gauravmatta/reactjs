@@ -1,0 +1,8 @@
+1. open the master folder and go for npm i command
+2. open client folder and fire npm i command
+3. create a file called default.json in config folder and provide the following data
+{
+    "mongoURI": 'mongodb://localhost:27017/',
+    "jwtSecret": "secret",
+}
+4. now go to package.json in master folder and keep the cursor on dev and you will see the option run script and pls click on it.
