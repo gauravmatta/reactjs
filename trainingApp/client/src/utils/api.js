@@ -9,7 +9,7 @@ const API = axios.create({
 });
 
 API.interceptors.request.use(
-  config => {
+  (config) => {
     // Add any custom headers or logic here
     const token = localStorage.getItem('token');
     if (token) {
@@ -17,7 +17,7 @@ API.interceptors.request.use(
     }
     return config;
   },
-  error => {
+  (error) => {
     return Promise.reject(error);
   }
 );
