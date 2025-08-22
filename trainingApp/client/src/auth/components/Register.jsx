@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { registerUser } from '../services/auth.service';
 
 const Register = () => {
   //useState is a hook that allows you to add state to a functional component
@@ -21,6 +22,12 @@ const Register = () => {
       console.log('Passwords do not match');
     } else {
       console.log('Form submitted successfully', formData);
+      // Here you would typically call the registerUser function from auth.service.js
+     const result = registerUser({ 
+      name:formData.name,
+      email:formData.email,
+      password:formData.password
+     })
     }
   }
 
