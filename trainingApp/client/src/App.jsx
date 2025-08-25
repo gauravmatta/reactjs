@@ -5,11 +5,12 @@ import Footer from './core/components/layouts/Footer'
 import RootRouter from './RootRouter'
 
 function App() {
+  const appName = "Support Connector";
   return (
     <>
-      <Header />
+      <Header appName={appName} />
      <RootRouter />
-      <Footer />
+      <Footer appName={appName} />
     </>
   )
 }

@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Header = () => {
+const Header = ({appName}) => {
   return (
     <div>
       <nav className="navbar bg-dark">
       <h1>
-        <a href="index.html"><i className="fas fa-code"></i> DevConnector</a>
+        <a href="index.html"><i className="fas fa-code"></i> {appName}</a>
       </h1>
       <ul>
         <li><a href="profiles.html">Developers</a></li>
