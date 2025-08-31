@@ -3,7 +3,7 @@ import API from "../../utils/api";
 export const registerUser = async (userData) => {
   try {
     const response = await API.post("/users", userData);
-    return response.data;
+    return response.data.token;
   } catch (error) {
     throw error;
   }

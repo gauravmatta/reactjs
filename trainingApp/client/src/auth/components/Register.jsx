@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { registerUser } from '../services/auth.service';
+import { registerAction } from '../redux/authAction';
 
 const Register = () => {
   //useState is a hook that allows you to add state to a functional component
@@ -22,13 +23,26 @@ const Register = () => {
       console.log('Passwords do not match');
     } else {
       console.log('Form submitted successfully', formData);
-      // Here you would typically call the registerUser function from auth.service.js
-     const result = registerUser({ 
-      name:formData.name,
-      email:formData.email,
-      password:formData.password
-     });
-     console.log(result);
+
+    // Here you would typically call the registerUser function from auth.service.js
+    //  const result = registerUser({ 
+    //   name:formData.name,
+    //   email:formData.email,
+    //   password:formData.password
+    //  });
+    
+    // useDispatch is a hook that gives you access to the dispatch function
+    const dispatch = useDispatch();
+    dispatch(registerAction({name,email,password}));
+
+    // useReducer is a hook that allows you to manage local component state
+    // const [state, dispatch] = useReducer(reducer, initialState);
+
+    const isAuthenticated = useSelector(
+      (state) => state.authReducer.isAuthenticated
+    );
+
+    // console.log(result);
     }
   }
 

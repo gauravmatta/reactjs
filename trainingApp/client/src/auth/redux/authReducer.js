@@ -1,29 +1,31 @@
-// will hold the changes needed to be done in the store
+import { REGISTER_SUCCESS } from "./types"
+
 const initialState = {
-  user: null,
-  isLoading: false,
-  error: null,
-};
+  user: null, // to hold user related information
+  loading: false,// we need spinner while confirming the data / credentials with BE
+  isAuthenticated: false, // to confirm that user is already authenticated
+  errors: null, // to get the form handling errors.
+}
 
-const authSlice = createSlice({
-  name: 'auth',
-  initialState,
-  reducers: {
-    loginStart: (state) => {
-      state.isLoading = true;
-      state.error = null;
-    },
-    loginSuccess: (state, action) => {
-      state.isLoading = false;
-      state.user = action.payload;
-    },
-    loginFailure: (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
-  },
-});
+export default (state = initialState, { type, payload }) => {
+  switch (type) {
 
-export const { loginStart, loginSuccess, loginFailure } = authSlice.actions;
+  case REGISTER_SUCCESS:
+    return {
+      ...state,
+      token: payload, 
+      loading: false, 
+      isAuthenticated: true,
+      errors: []
+    };
 
-export default authSlice.reducer;
+  case 'LOGIN_SUCCESS':
+    return { ...state, token: payload, loading: false, isAuthenticated: true, user: payload.user }
+
+  case 'LOGIN_FAILURE':
+    return { ...state, loading: false, errors: payload }
+
+  default:
+    return state
+  }
+}
