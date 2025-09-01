@@ -1,8 +1,20 @@
 import React, { useState } from 'react'
-import { registerUser } from '../services/auth.service';
 import { registerAction } from '../redux/authAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Register = () => {
+
+  // useDispatch is a hook that gives you access to the dispatch function from the Redux store
+  // you can use it to dispatch actions as needed
+  const dispatch = useDispatch();
+  
+  // useSelector is a hook that allows you to extract data from the Redux store state
+  // useSelector takes a function as an argument that receives the entire store state and returns the part of the state you want
+  const isAuthenticated = useSelector(
+      (state) => state.auth.isAuthenticated
+    );
+  console.log(isAuthenticated);
+
   //useState is a hook that allows you to add state to a functional component
   //useState returns an array with two elements: the current state and a function to update it
   //we can use array destructuring to assign the two elements to variables
@@ -24,23 +36,11 @@ const Register = () => {
     } else {
       console.log('Form submitted successfully', formData);
 
-    // Here you would typically call the registerUser function from auth.service.js
-    //  const result = registerUser({ 
-    //   name:formData.name,
-    //   email:formData.email,
-    //   password:formData.password
-    //  });
-    
-    // useDispatch is a hook that gives you access to the dispatch function
-    const dispatch = useDispatch();
+    // Dispatch the registerAction with formData
     dispatch(registerAction({name,email,password}));
 
     // useReducer is a hook that allows you to manage local component state
     // const [state, dispatch] = useReducer(reducer, initialState);
-
-    const isAuthenticated = useSelector(
-      (state) => state.authReducer.isAuthenticated
-    );
 
     // console.log(result);
     }
