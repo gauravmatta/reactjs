@@ -13,7 +13,7 @@ export const registerAction = (formData) => async (dispatch) => {
 
     dispatch({
       type: REGISTER_SUCCESS,
-      payload: res.data,
+      payload: res,
     });
   } catch (err) {
     dispatch({

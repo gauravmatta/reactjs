@@ -2,6 +2,7 @@ import { REGISTER_SUCCESS } from "./types"
 
 const initialState = {
   user: null, // to hold user related information
+  token: localStorage.getItem('token') || null, // to hold jwt token
   loading: false,// we need spinner while confirming the data / credentials with BE
   isAuthenticated: false, // to confirm that user is already authenticated
   errors: null, // to get the form handling errors.
