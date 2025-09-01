@@ -19,11 +19,11 @@ export default (state = initialState, { type, payload }) => {
       errors: []
     };
 
-  case 'LOGIN_SUCCESS':
-    return { ...state, token: payload, loading: false, isAuthenticated: true, user: payload.user }
+  // case 'LOGIN_SUCCESS':
+  //   return { ...state, token: payload, loading: false, isAuthenticated: true, user: payload.user }
 
-  case 'LOGIN_FAILURE':
-    return { ...state, loading: false, errors: payload }
+  // case 'LOGIN_FAILURE':
+  //   return { ...state, loading: false, errors: payload }
 
   default:
     return state
