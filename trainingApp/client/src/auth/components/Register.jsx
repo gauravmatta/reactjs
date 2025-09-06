@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { registerAction } from '../redux/authAction';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
@@ -13,7 +14,9 @@ const Register = () => {
   const isAuthenticated = useSelector(
       (state) => state.auth.isAuthenticated
     );
-  console.log(isAuthenticated);
+
+  // navigation hook to programmatically navigate to different routes
+  const navigate = useNavigate();  
 
   //useState is a hook that allows you to add state to a functional component
   //useState returns an array with two elements: the current state and a function to update it
@@ -44,6 +47,13 @@ const Register = () => {
 
     // console.log(result);
     }
+  }
+
+  if(isAuthenticated){
+    console.log('User is authenticated');
+    navigate('/dashboard/');
+  } else {
+    console.log('User is not authenticated');
   }
 
   return (

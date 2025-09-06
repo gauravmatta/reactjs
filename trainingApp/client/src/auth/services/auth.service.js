@@ -6,15 +6,17 @@ export const registerUser = async (userData) => {
     console.log('Response from registerUser:', response.data.token);
     return response.data.token;
   } catch (error) {
-    throw error;
+    const response = error.response;
+    throw res;
   }
 };
 
-export const loginUser = async (credentials) => {
+export const loadUser = async () => {
   try {
-    const response = await API.post("/auth", credentials);
+    const response = await API.get("/auth");
     return response.data;
   } catch (error) {
-    throw error;
+    const response = error.response;
+    throw res;
   }
 };
