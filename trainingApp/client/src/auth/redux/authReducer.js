@@ -1,4 +1,4 @@
-import { REGISTER_SUCCESS } from "./types"
+import { REGISTER_SUCCESS, USER_LOADED } from "./types"
 
 const initialState = {
   user: null, // to hold user related information
@@ -9,9 +9,21 @@ const initialState = {
 }
 
 export default (state = initialState, { type, payload }) => {
+  console.log('AuthReducer called with action type:', type, 'and payload:', payload);
   switch (type) {
 
+  case USER_LOADED:
+    console.log('USER_LOADED action payload:', payload);
+    return { 
+      ...state,
+      user: payload, 
+      isAuthenticated: true, 
+      loading: false ,
+      errors: []
+    };
   case REGISTER_SUCCESS:
+    console.log('REGISTER_SUCCESS action payload:', payload);
+    localStorage.setItem('token', payload);
     return {
       ...state,
       token: payload, 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { loginUser } from '../services/auth.service';
+// import { loginUser } from '../services/auth.service';
 
 const Login = () => {
 
@@ -13,16 +13,16 @@ const { email, password } = formData;
 const onChange = (e) =>
   setFormData({ ...formData, [e.target.name]: e.target.value });
 
-const onSubmit = async (e) => {
-  e.preventDefault();
-  console.log('Login form submitted', formData);
-  try {
-    const user = await loginUser({ email, password });
-    console.log('Login successful', user);
-  } catch (error) {
-    console.error('Login failed', error);
-  }
-};
+// const onSubmit = async (e) => {
+//   e.preventDefault();
+//   console.log('Login form submitted', formData);
+//   try {
+//     const user = await loginUser({ email, password });
+//     console.log('Login successful', user);
+//   } catch (error) {
+//     console.error('Login failed', error);
+//   }
+// };
 
   return (
     <>

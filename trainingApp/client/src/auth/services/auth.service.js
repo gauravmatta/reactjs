@@ -14,6 +14,7 @@ export const registerUser = async (userData) => {
 export const loadUser = async () => {
   try {
     const response = await API.get("/auth");
+    console.log('Response from loadUser:', response.data);
     return response.data;
   } catch (error) {
     const response = error.response;
