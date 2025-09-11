@@ -1,5 +1,6 @@
 // will perform common backend authentication logic.
 // will perform rest calls.
+import { setAlert } from "../../core/redux/coreActions";
 import { loadUser, registerUser } from "../services/auth.service";
 import { AUTH_ERROR, REGISTER_SUCCESS, USER_LOADED } from "./types";
 
@@ -30,13 +31,15 @@ export const registerAction = (formData) => async (dispatch) => {
   try {
     console.log('registerAction called with formData:', formData);
     const res = await registerUser(formData);
-    console.log('Response from registerAction:', res);
-    dispatch(loadUserDetailsAction());
     console.log('Dispatching REGISTER_SUCCESS with payload:', res);
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res,
     });
+    // success alert
+    dispatch(setAlert('Registration Successful', 'success'));
+    // load user details after registration
+    dispatch(loadUserDetailsAction());
   } catch (err) {
     dispatch({
       type: AUTH_ERROR,

@@ -6,8 +6,8 @@ export const registerUser = async (userData) => {
     console.log('Response from registerUser:', response.data.token);
     return response.data.token;
   } catch (error) {
-    const response = error.response;
-    throw res;
+    const res = error.response;
+    return { data: res.data.errors, status: "fail" }
   }
 };
 
