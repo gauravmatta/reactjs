@@ -41,6 +41,10 @@ export const registerAction = (formData) => async (dispatch) => {
     // load user details after registration
     dispatch(loadUserDetailsAction());
   } catch (err) {
+    const errors = err.data;
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
     dispatch({
       type: AUTH_ERROR,
     });
