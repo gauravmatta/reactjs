@@ -1,11 +1,32 @@
 // will perform common backend authentication logic.
 // will perform rest calls.
 import { setAlert } from "../../core/redux/coreActions";
-import { loadUser, registerUser } from "../services/auth.service";
-import { AUTH_ERROR, REGISTER_SUCCESS, USER_LOADED } from "./types";
+import { loadUser, loginUser, registerUser } from "../services/auth.service";
+import { AUTH_ERROR, LOGIN_SUCCESS, REGISTER_SUCCESS, USER_LOADED } from "./types";
 
+export const loginAction = (formdata) => async (dispatch) => {
+    try {
+  console.log('loginAction called');
+  const res = await loginUser(formdata);
+  console.log('Response from loginAction:', res);
+  dispatch({ 
+      type: LOGIN_SUCCESS,
+      payload: res
+    });
+    // success alert
+    dispatch(setAlert('Login Successful', 'success'));
+    // load user details after registration
+    dispatch(loadUserDetailsAction());
+  } catch (err) {
+    const errors = err.data;
+    console.log('Errors in loginAction:', JSON.stringify(errors));
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+    console.log('Errors in loginAction:', JSON.stringify(errors));
+  }
+}
 
-// api/auth : get method to load the user details
 export const loadUserDetailsAction = () => async (dispatch) => {
   // dispatch : is a function provided by the store.
   // its job is to send actions to the redux store . so that reducer can update the state.
