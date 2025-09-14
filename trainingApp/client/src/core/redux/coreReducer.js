@@ -1,4 +1,4 @@
-import { SET_ALERT } from "./types"
+import { REMOVE_ALERT, SET_ALERT } from "./types"
 
 const initialState = []
 
