@@ -7,7 +7,8 @@ export const registerUser = async (userData) => {
     return response.data.token;
   } catch (error) {
     const res = error.response;
-    return { data: res.data.errors, status: "fail" }
+    console.log('Error response from registerUser:', JSON.stringify(res));
+    throw { data: res.data.errors, status: "fail" }
   }
 };
 

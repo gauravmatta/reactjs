@@ -42,6 +42,7 @@ export const registerAction = (formData) => async (dispatch) => {
     dispatch(loadUserDetailsAction());
   } catch (err) {
     const errors = err.data;
+    console.log('Errors in registerAction:', JSON.stringify(errors));
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
     }
