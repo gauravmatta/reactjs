@@ -68,7 +68,7 @@ const Register = () => {
            required />
         </div>
         <div className="form-group">
-          <input type="email" placeholder="Email Address" name="email" value={email} onChange={onChange} required />
+          <input type="email" placeholder="Email Address" name="email" value={email} onChange={onChange} />
           <small className="form-text"
             >This site uses Gravatar so if you want a profile image, use a
             Gravatar email
@@ -82,7 +82,6 @@ const Register = () => {
             minLength="6"
             value={password}
             onChange={onChange}
-            required
           />
         </div>
         <div className="form-group">
@@ -93,7 +92,6 @@ const Register = () => {
             minLength="6"
             value={password2}
             onChange={onChange}
-            required
           />
         </div>
         <input type="submit" className="btn btn-primary" value="Register"/>

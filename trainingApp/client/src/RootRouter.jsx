@@ -3,6 +3,7 @@ import {Routes ,Route} from 'react-router-dom'
 import Landing from './core/components/layouts/Landing'
 import AuthRouter from './auth/router/Index'
 import DashboardRouter from './dashboard/router/Index'
+import Alert from './core/components/layouts/Alert'
 
 // routers are responsible for handling the application's routing business logic.
 const RootRouter = () => {
