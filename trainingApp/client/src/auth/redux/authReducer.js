@@ -42,9 +42,6 @@ export default (state = initialState, { type, payload }) => {
       errors: []
     };
 
-  // case 'LOGIN_FAILURE':
-  //   return { ...state, loading: false, errors: payload }
-
   default:
     return state
   }
