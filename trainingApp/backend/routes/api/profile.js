@@ -64,7 +64,7 @@ router.post(
       user: req.user.id,
       website:
         website && website !== ''
-          ? normalize(website, { forceHttps: true })
+          ? ''
           : '',
       skills: Array.isArray(skills)
         ? skills
@@ -78,7 +78,7 @@ router.post(
     // normalize social fields to ensure valid url
     for (const [key, value] of Object.entries(socialFields)) {
       if (value && value.length > 0)
-        socialFields[key] = normalize(value, { forceHttps: true });
+        socialFields[key] = '';
     }
     // add to profileFields
     profileFields.social = socialFields;

@@ -16,7 +16,8 @@ export default (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case UPDATE_PROFILE: // to update or create both.
+    case UPDATE_PROFILE:// to update or create both.
+    console.log("profile sent to be updated in reducer", payload);
     case GET_PROFILE:
       console.log("profile data in reducer", payload);
       return { ...state, currentProfile: payload, loading: false };

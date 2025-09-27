@@ -3,8 +3,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Link, useMatch, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  createProfileAction,
-  getCurrentUserProfileAction,
+  createOrUpdateProfileAction,
+  getCurrentUserProfileAction
 } from "../../redux/profileAction";
 
 // Keep initial state OUTSIDE component
@@ -112,6 +112,7 @@ export default function ProfileForm() {
   };
 
   const onSubmit = async (e) => {
+    console.log("Submitting profile form", formData);
     e.preventDefault();
     const editing = Boolean(currentProfile);
 
@@ -129,7 +130,8 @@ export default function ProfileForm() {
     };
 
     try {
-      await dispatch(createProfileAction(sanitized, editing));
+      console.log(editing ? "Editing profile" : "Creating profile", sanitized);
+      dispatch(createOrUpdateProfileAction(sanitized, editing));
       if (!editing) navigate("/dashboard");
     } catch {
       // errors are already alerted by action; nothing else here
