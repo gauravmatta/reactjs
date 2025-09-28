@@ -32,3 +32,35 @@ export const createOrUpdateProfile = async (formData) => {
         throw errorObject;
     }
 }
+
+export const addEducation = async (formData) => {
+    try {
+        const response = await API.put("/profile/education", formData);
+        return response.data;
+    } catch (error) {
+        const resp = error.response;
+        const errorObject = {
+            statusText: resp?.statusText ?? "Network Error",
+            status: resp?.status ?? 0,
+            errors: resp?.data?.errors ?? null,
+            message: resp?.data?.msg ?? error?.message ?? "Unknown Error"
+        };
+        throw errorObject;
+    }
+}
+
+export const addExperience = async (formData) => {
+    try {
+        const response = await API.put("/profile/experience", formData);
+        return response.data;
+    } catch (error) {
+        const resp = error.response;
+        const errorObject = {
+            statusText: resp?.statusText ?? "Network Error",
+            status: resp?.status ?? 0,
+            errors: resp?.data?.errors ?? null,
+            message: resp?.data?.msg ?? error?.message ?? "Unknown Error"
+        };
+        throw errorObject;
+    }
+}
