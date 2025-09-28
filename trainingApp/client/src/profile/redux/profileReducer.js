@@ -1,5 +1,9 @@
 import {
+  ADD_EDUCATION,
+  ADD_EXPERIENCE,
   CREATE_PROFILE,
+  EDUCATION_ERROR,
+  EXPERIENCE_ERROR,
   GET_PROFILE,
   PROFILE_ERROR,
   UPDATE_PROFILE,
@@ -17,11 +21,17 @@ export default (state = initialState, action) => {
 
   switch (type) {
     case UPDATE_PROFILE:// to update or create both.
-    console.log("profile sent to be updated in reducer", payload);
+      console.log("profile sent to be updated in reducer", payload);
+    case CREATE_PROFILE:
+      console.log("profile sent to be created in reducer", payload);
     case GET_PROFILE:
+    case ADD_EDUCATION:
+    case ADD_EXPERIENCE:
       console.log("profile data in reducer", payload);
       return { ...state, currentProfile: payload, loading: false };
     case PROFILE_ERROR:
+    case EXPERIENCE_ERROR:
+    case EDUCATION_ERROR:
       console.log("profile error in reducer", payload);
       return {
         ...state,

@@ -1,6 +1,6 @@
 import { setAlert } from "../../core/redux/coreActions";
 import { createOrUpdateProfile, getCurrentUserProfile } from "../services/profile.service";
-import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from "./types";
+import { ADD_EDUCATION, ADD_EXPERIENCE, EDUCATION_ERROR, GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from "./types";
 
 export const getCurrentUserProfileAction = () => async (dispatch) => {
   try {
@@ -29,12 +29,50 @@ export const createOrUpdateProfileAction = (profileData, edit = false) => async 
       payload: data
     });
     console.log("Profile successfully created/updated:", data);
-    dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));    
+    dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
   } catch (error) {
     console.error("Error creating/updating profile:", JSON.stringify(error));
-    if(error.errors) {
+    if (error.errors) {
       error.errors.forEach(err => dispatch(setAlert(err.msg, 'danger')));
     }
-    dispatch({ type: PROFILE_ERROR, payload: { msg: error.statusText,status: error.status } });
+    dispatch({ type: PROFILE_ERROR, payload: { msg: error.statusText, status: error.status } });
   }
 };
+
+export const addEducationAction = (formData, edit = false) => async (dispatch) => {
+  try {
+    console.log("Adding education...", formData);
+    const data = await addEducation(formData);
+    dispatch({
+      type: ADD_EDUCATION,
+      payload: data
+    });
+    console.log("Education successfully added:", data);
+    dispatch(setAlert(edit ? 'Education Updated' : 'Education Added', 'success'));
+  } catch (error) {
+    console.error("Error adding education:", JSON.stringify(error));
+    if (error.errors) {
+      error.errors.forEach(err => dispatch(setAlert(err.msg, 'danger')));
+    }
+    dispatch({ type: EDUCATION_ERROR, payload: { msg: error.statusText, status: error.status } });
+  }
+}
+
+export const addExperienceAction = (formData) => async (dispatch) => {
+  try {
+    console.log("Adding experience...", formData);
+    const data = await addExperience(formData);
+    dispatch({
+      type: ADD_EXPERIENCE,
+      payload: data
+    });
+    console.log("Experience successfully added:", data);
+    dispatch(setAlert('Experience Added', 'success'));
+  } catch (error) {
+    console.error("Error adding experience:", JSON.stringify(error));
+    if (error.errors) {
+      error.errors.forEach(err => dispatch(setAlert(err.msg, 'danger')));
+    }
+    dispatch({ type: EXPERIENCE_ERROR, payload: { msg: error.statusText, status: error.status } });
+  }
+}

@@ -1,7 +1,8 @@
-import React, { use, useEffect } from 'react'
+import React, { use, useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentUserProfileAction } from '../../profile/redux/profileAction';
 import { Link } from 'react-router-dom';
+import DashboardAction from './DashboardAction';
 
 // Simple functional component that displays a welcome message for the user dashboard
 
@@ -15,7 +16,27 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(getCurrentUserProfileAction());
   }, [dispatch]);
-
+  const displayProfile =useMemo(() => {
+    console.log("Current Profile:", currentProfile);
+    if (currentProfile) {
+      console.log("Rendering DashboardAction component");
+      return (
+        <>
+          <div>User Profile</div>
+          <DashboardAction />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <p>You have not yet set up a profile, please add some info</p>
+          <Link to="/profile/create" className="btn btn-primary my-1">
+            Create Profile
+          </Link>
+        </>
+      );
+    }
+  }, [currentProfile]);
   return (
     <>
       <section className="container">
@@ -25,6 +46,7 @@ const Dashboard = () => {
         <p className="lead">
           <i className="fas fa-user"></i> Welcome {user?.name}
         </p>
+        {displayProfile}
         {currentProfile ? (
           <>
             {/* <DashboardActions />
@@ -39,9 +61,6 @@ const Dashboard = () => {
                 <i className="fas fa-user-minus" /> Delete My Account
               </button>
             </div>
-            <Link to="/profile/edit" className="btn btn-primary my-1">
-              Edit Profile
-            </Link>
           </>
         ) : (
           <>
