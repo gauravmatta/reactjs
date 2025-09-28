@@ -1,6 +1,6 @@
 import { setAlert } from "../../core/redux/coreActions";
 import { createOrUpdateProfile, getCurrentUserProfile } from "../services/profile.service";
-import { ADD_EDUCATION, ADD_EXPERIENCE, EDUCATION_ERROR, GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from "./types";
+import { ADD_EDUCATION, ADD_EXPERIENCE, EDUCATION_ERROR, EXPERIENCE_ERROR, GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from "./types";
 
 export const getCurrentUserProfileAction = () => async (dispatch) => {
   try {
