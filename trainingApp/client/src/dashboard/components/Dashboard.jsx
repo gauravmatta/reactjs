@@ -16,13 +16,10 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(getCurrentUserProfileAction());
   }, [dispatch]);
-  const displayProfile =useMemo(() => {
-    console.log("Current Profile:", currentProfile);
+  const displayProfile = useMemo(() => {
     if (currentProfile) {
-      console.log("Rendering DashboardAction component");
       return (
         <>
-          <div>User Profile</div>
           <DashboardAction />
         </>
       );
@@ -49,10 +46,7 @@ const Dashboard = () => {
         {displayProfile}
         {currentProfile ? (
           <>
-            {/* <DashboardActions />
-            <Experience experience={currentProfile?.experience ?? []} />
-            <Education education={currentProfile?.education ?? []} /> */}
-            <>user profile</>
+            <>{JSON.stringify(currentProfile)}</>
             <Link to="/profile/edit" className="btn btn-primary my-1">
               Edit Profile
             </Link>
