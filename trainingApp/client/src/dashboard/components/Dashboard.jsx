@@ -44,12 +44,73 @@ const Dashboard = () => {
           <i className="fas fa-user"></i> Welcome {user?.name}
         </p>
         {displayProfile}
+      <h2 class="my-2">Experience Credentials</h2>
+       <>{JSON.stringify(currentProfile.experience)}</>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th class="hide-sm">Title</th>
+            <th class="hide-sm">Years</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tech Guy Web Solutions</td>
+            <td class="hide-sm">Senior Developer</td>
+            <td class="hide-sm">
+              02-03-2009 - 01-02-2014
+            </td>
+            <td>
+              <button class="btn btn-danger">
+                Delete
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Traversy Media</td>
+            <td class="hide-sm">Instructor & Developer</td>
+            <td class="hide-sm">
+              02-03-2015 - Now
+            </td>
+            <td>
+              <button class="btn btn-danger">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 class="my-2">Education Credentials</h2>
+       <>{JSON.stringify(currentProfile.education)}</>
+      <table class="table">
+          <thead>
+            <tr>
+              <th>School</th>
+              <th class="hide-sm">Degree</th>
+              <th class="hide-sm">Years</th>
+              <th />
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Northern Essex</td>
+              <td class="hide-sm">Associates</td>
+              <td class="hide-sm">
+                02-03-2007 - 01-02-2009
+              </td>
+              <td>
+                <button class="btn btn-danger">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
         {currentProfile ? (
           <>
-            <>{JSON.stringify(currentProfile)}</>
-            <Link to="/profile/edit" className="btn btn-primary my-1">
-              Edit Profile
-            </Link>
             <div className="my-2">
               <button className="btn btn-danger" onClick={() => dispatch()}>
                 <i className="fas fa-user-minus" /> Delete My Account
