@@ -1,4 +1,4 @@
-const EduRow = ({ row}) => {
+const EduRow = ({ row, deleteEducation}) => {
     return (
         <>
         <tr>

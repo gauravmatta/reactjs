@@ -1,6 +1,6 @@
 import EduRow from "./EduRow";
 
-const EducationDetails = ({ edus }) => {
+const EducationDetails = ({ edus, deleteEducation }) => {
     return (
         <>
        <h2 className="my-2">Education Credentials</h2>
@@ -15,7 +15,7 @@ const EducationDetails = ({ edus }) => {
            </thead>
            <tbody>
                {edus?.map((edu, index) => (
-                <EduRow key={index} id={index} row={edu} />
+                <EduRow key={index} id={index} row={edu} deleteEducation={deleteEducation}/>
                ))}
            </tbody>
        </table>
