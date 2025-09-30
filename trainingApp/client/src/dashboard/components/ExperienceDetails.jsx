@@ -15,7 +15,7 @@ const ExperienceDetails = ({ experiences, deleteExperience }) => {
                 </thead>
                 <tbody>
                     {experiences?.map((exp, index) => (
-                        <ExpRow key={index} id={index} row={exp} deleteExperience={deleteExperience} />
+                        <ExpRow key={index} row={exp} deleteExperience={deleteExperience} />
                     ))}
                 </tbody>
             </table>

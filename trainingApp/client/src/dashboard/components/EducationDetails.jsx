@@ -15,7 +15,7 @@ const EducationDetails = ({ edus, deleteEducation }) => {
            </thead>
            <tbody>
                {edus?.map((edu, index) => (
-                <EduRow key={index} id={index} row={edu} deleteEducation={deleteEducation}/>
+                <EduRow key={index} row={edu} deleteEducation={deleteEducation}/>
                ))}
            </tbody>
        </table>
