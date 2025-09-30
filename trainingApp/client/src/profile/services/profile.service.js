@@ -4,7 +4,7 @@ export const deleteExpById = async (id) => {
   try {
     console.log("id value from ", id);
     const response = await API.delete(`/profile/experience/${id}`);
-    console.log("response obj from detele ", response.data);
+    console.log("response obj from delete ", response.data);
     return response.data;
   } catch (error) {
     console.error("inside the service ", error.response);
@@ -22,7 +22,7 @@ export const deleteEduById = async (id) => {
   try {
     console.log("id value from ", id);
     const response = await API.delete(`/profile/education/${id}`);
-    console.log("response obj from detele ", response.data);
+    console.log("response obj from delete ", response.data);
     return response.data;
   } catch (error) {
     console.error("inside the service ", error.response);
