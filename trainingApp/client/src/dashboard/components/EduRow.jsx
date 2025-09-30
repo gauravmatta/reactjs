@@ -8,7 +8,7 @@ const EduRow = ({ row}) => {
                 {new Date(row.from).toLocaleDateString()} - {row.current ? ' Now' : new Date(row.to).toLocaleDateString()}
             </td>
             <td>
-                <button className="btn btn-danger">Delete</button>
+                <button className="btn btn-danger" onClick={() => deleteEducation(row._id)}>Delete</button>
             </td>
         </tr>
         </>
