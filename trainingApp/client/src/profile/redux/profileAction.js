@@ -1,6 +1,25 @@
 import { setAlert } from "../../core/redux/coreActions";
-import { addEducation, addExperience, createOrUpdateProfile, getCurrentUserProfile } from "../services/profile.service";
+import { addEducation, addExperience, createOrUpdateProfile, deleteExpById, getCurrentUserProfile } from "../services/profile.service";
 import { ADD_EDUCATION, ADD_EXPERIENCE, EDUCATION_ERROR, EXPERIENCE_ERROR, GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from "./types";
+
+
+export const deleteExpByIdAction = (id) => async (dispatch) => {
+  try {
+    const response = await deleteExpById(id);
+    console.log("inside the profile action");
+    dispatch({
+      type: GET_PROFILE,
+      payload: response,
+    });
+    console.log("after dispatch");
+  } catch (error) {
+    console.log("action profile ", JSON.stringify(error.response));
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: error,
+    });
+  }
+};
 
 export const getCurrentUserProfileAction = () => async (dispatch) => {
   try {

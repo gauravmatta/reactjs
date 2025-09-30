@@ -1,6 +1,6 @@
-import React, { use, useEffect, useMemo } from 'react'
+import React, { use, useCallback, useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrentUserProfileAction } from '../../profile/redux/profileAction';
+import { deleteExpByIdAction, getCurrentUserProfileAction } from '../../profile/redux/profileAction';
 import { Link } from 'react-router-dom';
 import DashboardAction from './DashboardAction';
 import EducationDetails from './EducationDetails';
@@ -18,6 +18,12 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(getCurrentUserProfileAction());
   }, [dispatch]);
+  const handleDeleteExperience = useCallback(
+    (expId) => {
+      dispatch(deleteExpByIdAction(expId));
+    },
+    [dispatch]
+  );
   const displayProfile = useMemo(() => {
     if (currentProfile) {
       return (
@@ -47,7 +53,7 @@ const Dashboard = () => {
         </p>
         {displayProfile}
         <EducationDetails edus={currentProfile?.education} />
-        <ExperienceDetails experiences={currentProfile?.experience} />
+        <ExperienceDetails experiences={currentProfile?.experience} deleteExperience={handleDeleteExperience} />
         {currentProfile ? (
           <>
             <div className="my-2">

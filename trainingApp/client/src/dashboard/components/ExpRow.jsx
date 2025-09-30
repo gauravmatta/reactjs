@@ -1,4 +1,4 @@
-const ExpRow = ({row}) => {
+const ExpRow = ({row,deleteExperience}) => {
     return (
         <>
         <tr>
@@ -8,7 +8,12 @@ const ExpRow = ({row}) => {
                 {new Date(row.from).toLocaleDateString()} - {row.current ? ' Now' : new Date(row.to).toLocaleDateString()}
             </td>
             <td>
-                <button className="btn btn-danger">Delete</button>
+            <button
+              className="btn btn-danger"
+              onClick={() => deleteExperience(row._id)}
+            >
+              Delete
+            </button>
             </td>
         </tr>
         </>

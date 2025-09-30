@@ -1,5 +1,23 @@
 import API from "../../utils/api";
 
+export const deleteExpById = async (id) => {
+  try {
+    console.log("id value from ", id);
+    const response = await API.delete(`/profile/experience/${id}`);
+    console.log("response obj from detele ", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("inside the service ", error.response);
+    console.log(error.response.statusText);
+    console.log(error.response.status);
+    const errorObject = {
+      msg: error.response.statusText,
+      status: error.response.status,
+    };
+    throw errorObject;
+  }
+};
+
 export const getCurrentUserProfile = async () => {
     try {
         console.log('Calling getCurrentUserProfile API');

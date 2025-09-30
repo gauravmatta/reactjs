@@ -1,6 +1,6 @@
 import ExpRow from "./ExpRow";
 
-const ExperienceDetails = ({ experiences }) => {
+const ExperienceDetails = ({ experiences, deleteExperience }) => {
     return (
         <>
             <h2 className="my-2">Experience Credentials</h2>
@@ -15,7 +15,7 @@ const ExperienceDetails = ({ experiences }) => {
                 </thead>
                 <tbody>
                     {experiences?.map((exp, index) => (
-                        <ExpRow id={index} row={exp} />
+                        <ExpRow key={index} id={index} row={exp} deleteExperience={deleteExperience} />
                     ))}
                 </tbody>
             </table>
