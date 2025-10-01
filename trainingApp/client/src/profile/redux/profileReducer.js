@@ -1,6 +1,7 @@
 import {
   ADD_EDUCATION,
   ADD_EXPERIENCE,
+  CLEAR_PROFILE,
   CREATE_PROFILE,
   EDUCATION_ERROR,
   EXPERIENCE_ERROR,
@@ -39,7 +40,10 @@ export default (state = initialState, action) => {
         currentProfile: null,
         loading: false,
       };
-
+    case CLEAR_PROFILE:
+      return {
+        ...state,
+      };
     default:
       return state;
   }

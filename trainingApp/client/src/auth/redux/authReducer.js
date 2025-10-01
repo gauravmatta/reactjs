@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, REGISTER_SUCCESS, USER_LOADED } from "./types"
+import { LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS, USER_LOADED } from "./types"
 
 const initialState = {
   user: null, // to hold user related information
@@ -41,7 +41,14 @@ export default (state = initialState, { type, payload }) => {
       isAuthenticated: true,
       errors: []
     };
-
+  case LOGOUT:
+    return {
+      user: null,
+      token: null,
+      isAuthenticated: false,
+      loading: false,
+      errors: null
+    };
   default:
     return state
   }

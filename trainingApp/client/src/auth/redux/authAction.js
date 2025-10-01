@@ -1,15 +1,23 @@
 // will perform common backend authentication logic.
 // will perform rest calls.
 import { setAlert } from "../../core/redux/coreActions";
+import { CLEAR_PROFILE } from "../../profile/redux/types";
 import { loadUser, loginUser, registerUser } from "../services/auth.service";
-import { AUTH_ERROR, LOGIN_SUCCESS, REGISTER_SUCCESS, USER_LOADED } from "./types";
+import { AUTH_ERROR, LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS, USER_LOADED } from "./types";
 
+export const logout = () => (dispatch) => {
+  localStorage.removeItem("token");
+  dispatch({ type: LOGOUT });
+  dispatch({
+    type: CLEAR_PROFILE
+  });
+}
 export const loginAction = (formdata) => async (dispatch) => {
-    try {
-  console.log('loginAction called');
-  const res = await loginUser(formdata);
-  console.log('Response from loginAction:', res);
-  dispatch({ 
+  try {
+    console.log('loginAction called');
+    const res = await loginUser(formdata);
+    console.log('Response from loginAction:', res);
+    dispatch({
       type: LOGIN_SUCCESS,
       payload: res
     });
@@ -35,9 +43,9 @@ export const loadUserDetailsAction = () => async (dispatch) => {
     console.log('loadUserDetailsAction called');
     const res = await loadUser();
     console.log('Response from loadUserDetailsAction:', res);
-    dispatch({ 
+    dispatch({
       type: USER_LOADED,
-      payload: res 
+      payload: res
     });
   } catch (err) {
     dispatch({ type: AUTH_ERROR });
