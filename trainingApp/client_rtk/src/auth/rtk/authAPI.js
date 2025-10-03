@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const BASE_URL = '/api'; // Updated to use proxy
 
-export const authAPI = createApi({
+export const authApi = createApi({
   reducerPath: 'authAPI',
   baseQuery: fetchBaseQuery({ 
     baseUrl: BASE_URL,
@@ -45,4 +45,4 @@ export const authAPI = createApi({
     })
   })
 });
-export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useLazyLoadMeQuery } = authAPI;
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useLazyLoadMeQuery } = authApi;

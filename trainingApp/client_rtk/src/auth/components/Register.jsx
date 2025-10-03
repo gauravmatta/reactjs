@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useRegisterMutation, useLazyLoadMeQuery } from "../rtk/authAPI";
+import { useAppDispatch, useAppSelector } from "../../utils/hooks/common";
 import {
   setCredentials,
   setError,
   setLoading,
   setUser,
 } from "../rtk/authSlice";
-import useToggle from "../../utils/hooks/useToggle";
-import { useLazyLoadMeQuery, useRegisterMutation } from "../rtk/authAPI";
-import { useAppDispatch, useAppSelector } from "../../utils/hooks/common";
+// import useToggle from "../../utils/hooks/useToggle";
 
 export default function Register() {
-  const [isOn, toggleOn] = useToggle(false);
+  // const [isOn, toggleOn] = useToggle(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { user, status, error, token } = useAppSelector((s) => s.auth);
@@ -48,8 +48,8 @@ export default function Register() {
     <div className="auth-card">
       <h1>Create Your Account</h1>
       <div>
-        <h2>Light is {isOn ? "ON" : "OFF"}</h2>
-        <button onClick={toggleOn}>Toggle</button>
+        {/* <h2>Light is {isOn ? "ON" : "OFF"}</h2> */}
+        {/* <button onClick={toggleOn}>Toggle</button> */}
       </div>
       <form onSubmit={onSubmit}>
         <label>
